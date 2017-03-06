@@ -24,12 +24,13 @@
 
     </style>
     <div class="container flex flex-center">
-        <form action="/" method="POST">
+        <form action="/spyfu/" method="POST">
             <form>
                 <div class="form-group">
                     <h2>Please enter your sites url</h2>
                     <label for="site">Site Url</label>
                     <input type="text" name="url" class="form-control" id="site-url" placeholder="example.com"><button type="submit" class="btn btn-default">Submit</button>
+                    
                 </div>
         </form>
 
