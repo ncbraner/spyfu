@@ -2,56 +2,172 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
-    <title>Ecreativeworks</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+  <title>Ecreativeworks</title>
+  <link rel="stylesheet" type="text/css" href="<?php echo getenv(" APPURL ") ?>app/templates/style.css" />
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 
 <body>
-    <style>
-        .flex {
-            display: flex;
-        }
+  <script>
+    function appearAdd() {
+      $(function() {
+        $("#popupAdd").dialog({
+          modal: true
+        });
+      });
+    }
+
+    function appearDelete() {
+      $(function() {
+        $("#popupDelete").dialog({
+          modal: true
+        });
+      });
+    }
+  </script>
+
+
+  <!--hidden popup-->
+
+  <?php if(isset($_GET["error"])){
+    echo "URL {$_GET['url']} Already in Database";
+}
+?>
+
+
+
+
+
+
+
+
+
+
+    <!--ADD URL FORM-->
+    <div id="popupAdd" class="popupAdd">
+      <h1>Enter the url you want to add</h1>
+
+      <form action="" method="post">
+        Company URL:
+        <input type="text" name="addUrl">
+        <br>
+
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+
+
+
+    <!--Run Report-->
+    <div id="popupDelet" class="popupDelet">
+      <h1>Do you want to run report</h1>
+
+      <form action="" method="post">
+      
+        <input type="submit" name="reportYes" value="yes">
+        <br>
+        <input type="submit" name="reportNo" value="no">
         
-        .flex-center {
-            justify-content: center;
-            align-items: center;
-        }
-        
-        form input {
-            height: 20px;
-        }
-    </style>
+      </form>
+    </div>
+
+
+
+      <!--Delete URL -->
+    
+    <div id="popupDelete" class="popupDelete">
+      <h1>Enter the url you want to Delete</h1>
+
+      <form action="" method="post">
+        Company URL:
+        <input type="text" name="deleteUrl">
+        <br>
+
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <div class="container flex flex-center">
-<<<<<<< HEAD
-        <form action="/spyfu/" method="POST">
-            <form>
-                <div class="form-group">
-                    <h2>Please enter your sites url</h2>
-                    <label for="site">Site Url</label>
-                    <input type="text" name="url" class="form-control" id="site-url" placeholder="example.com"><button type="submit" class="btn btn-default">Submit</button>
-                    
-                </div>
+      <?php
+$actionLink = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+?>
+        <form action=<?php echo $actionLink ?> method="POST">
+
+          <div class="form-group">
+            <h2>Please enter your sites url</h2>
+            <label for="site">Site Url</label>
+            <input type="text" name="url" class="form-control" id="site-url" placeholder="example.com">
+            <button type="submit" class="btn btn-default">Submit</button>
+
+          </div>
+
         </form>
-=======
-        <?php
-            $actionLink = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-        ?>
-            <form action=<?php echo $actionLink ?> method="POST">
-                <form>
-                    <div class="form-group">
-                        <h2>Please enter your sites url</h2>
-                        <label for="site">Site Url</label>
-                        <input type="text" name="url" class="form-control" id="site-url" placeholder="example.com">
-                        <button
-                            type="submit" class="btn btn-default">Submit</button>
-                    </div>
-                </form>
->>>>>>> 8e259eb911ada021b0600b24d859c8378efd7621
 
 
+    </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+    <div id="hide" class="addDelete flex flex-center">
+
+      <div class="addUrl">
+        <button class="addurlbtn" id="add" onclick="appearAdd()">
+          <div class="btnInner">
+            <h1>Click here to add a client URL</h1>
+          </div>
+        </button>
+      </div>
+
+      <div class="monthlyReport ">
+        <button class="monthlyReportBtn ">
+          <div class="btnInner">
+            <h1>Monthly Report</h1>
+          </div>
+        </button>
+      </div>
+
+
+      <div class="deleteurl" id=delete" onclick="appearDelete()">
+        <button class="deleteurlbtn ">
+          <div class="btnInner">
+            <h1>Click here to delete a client URL</h1>
+          </div>
+
+        </button>
+      </div>
     </div>
 </body>
 

@@ -1,0 +1,29 @@
+ .flex {
+     display: flex;
+ }
+ 
+ .flex-center {
+     justify-content: center;
+     align-items: center;
+ }
+ 
+ form input {
+     height: 20px;
+ }
+ 
+ .btnInner {
+     height: 150px;
+     width: 150px;
+     align-items: center;
+ }
+ 
+ button {
+     border-radius: 20px;
+ }
+ 
+ .addDelete {
+     height: 450px;
+     justify-content: space-around;
+ }
+ 
+ C:\xampp\htdocs\spyfu\app\templates\style.css
