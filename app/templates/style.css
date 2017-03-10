@@ -26,6 +26,9 @@
      justify-content: space-around;
  }
  
+ .hidden{
+     display:none;
+ }
  .popupAdd {
      display: none;
  }
