@@ -72,17 +72,10 @@
         <input type="submit" value="Submit">
       </form>
     </div>
-    <div class="container flex flex-center">
-      <?php
-$actionLink = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-?>
-     
-     
-     
-     <!--end hidden content -->
-     
-
-     <div class="toolbar flex flex-center">
+   
+   
+   
+    <div class="toolbar flex flex-center">
          <div class="addUrl">
         <button class="addurlbtn" id="add" onclick="appearAdd()">
           <div class="btnInner">
@@ -99,7 +92,23 @@ $actionLink = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
       </div>
      </div>
      
-        <form action=<?php echo $actionLink ?> method="POST">
+
+
+   
+   
+    <div class="container flex flex-center">
+      <?php
+$actionLink = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+?>
+     
+     
+     
+     <!--end hidden content -->
+     
+
+ 
+
+            <form action=<?php echo $actionLink ?> method="POST">
 
           <div class="form-group">
             <h2>Run a URL one time only.</h2>
@@ -112,7 +121,7 @@ $actionLink = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
         </form>
 
 
-    </div>
+   
 
     </div>
 

@@ -39,3 +39,14 @@
  .hiddenInput{
      display:none;
  }
+
+ .toolbar{
+     display: flex;
+      height: 450px;
+     justify-content: space-around;
+ }
+
+ .toolbarcld{
+     flex-direction: right:
+
+ }
