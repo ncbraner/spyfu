@@ -14,15 +14,15 @@ class SpyfuApi
         $this->client = $client;
     }
 
-    protected function buildUrl($endPoint, $clientUrl)
+    protected function buildUrl($endPoint, $clientUrl, $term)
     {
-        return "http://www.spyfu.com/apis/url_api/{$endPoint}?q={$clientUrl}&r=10&api_key={$this->apiSecret}";
+        return "http://www.spyfu.com/apis/url_api/{$endPoint}?q={$clientUrl}&r=1&t={$term}&api_key={$this->apiSecret}";
     }
 
-    public function get($endPoint, $clientUrl)
+    public function get($endPoint, $clientUrl,$term)
     {
         try {
-            $result = $this->client->request('GET', $this->buildUrl($endPoint, $clientUrl));
+            $result = $this->client->request('GET', $this->buildUrl($endPoint,$clientUrl,$term));
             return $result->getBody()->getContents();
         }catch(\Exception $e){
             return $e->getMessage();

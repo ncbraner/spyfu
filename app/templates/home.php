@@ -18,6 +18,12 @@
 </head>
 
 <body>
+
+
+
+
+
+
   <!--hidden popup-->
 
   <?php if(isset($_GET["error"])){
@@ -70,6 +76,29 @@
       <?php
 $actionLink = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 ?>
+     
+     
+     
+     <!--end hidden content -->
+     
+
+     <div class="toolbar flex flex-center">
+         <div class="addUrl">
+        <button class="addurlbtn" id="add" onclick="appearAdd()">
+          <div class="btnInner">
+            <h1>Click here to add a client URL</h1>
+          </div>
+        </button>
+      </div>
+         <div class="addUrl">
+        <button class="addurlbtn" id="add" onclick="appearAdd()">
+          <div class="btnInner">
+            <h1>Click here to add a client URL</h1>
+          </div>
+        </button>
+      </div>
+     </div>
+     
         <form action=<?php echo $actionLink ?> method="POST">
 
           <div class="form-group">
