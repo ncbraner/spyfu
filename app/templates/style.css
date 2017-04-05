@@ -47,6 +47,18 @@
  }
 
  .toolbarcld{
-     flex-direction: right:
+     flex-direction: right;
+
+ }
+
+ flextop{
+     align-items: flex-start;
+ }
+
+ .scrollbox{
+height: 200px;
+width: 200px;
+border: 2px solid;
+
 
  }

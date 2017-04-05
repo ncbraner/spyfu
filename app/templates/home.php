@@ -74,24 +74,104 @@
     </div>
    
    
-   
-    <div class="toolbar flex flex-center">
-         <div class="addUrl">
-        <button class="addurlbtn" id="add" onclick="appearAdd()">
-          <div class="btnInner">
-            <h1>Click here to add a client URL</h1>
-          </div>
-        </button>
-      </div>
-         <div class="addUrl">
-        <button class="addurlbtn" id="add" onclick="appearAdd()">
-          <div class="btnInner">
-            <h1>Click here to add a client URL</h1>
-          </div>
-        </button>
-      </div>
-     </div>
+<div class="toolbar flex flextop  ">
+     <?php
+            $actionLink = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+      ?>
      
+
+ <div class="">
+   <strong>Step 1</strong>
+  <form action=<?php echo $actionLink ?> method="POST">
+    <div class="form-group">
+      <h2>What is the URL you want to see Keywords for.</h2>
+      <label for="site">Site Url</label>
+      <input type="text" name="url_keywords" class="form-control" id="site-url" placeholder="example.com">
+      <button type="submit" class="btn btn-default">Submit</button>
+</form>
+      <div>
+        <p>
+          <?php 
+        if(isset($_POST['url_keywords'])){
+        echo "Your Current URL is" . " ".  $_POST['url_keywords'];} ?>
+        </p>
+      </div>
+
+      <div>
+        <form action="">
+          <p>
+        <strong>Step 2</strong> <br />
+        Do you want to add or delete a Keyword 
+          
+            <input type="radio" name="Add" value="male"> Add
+            <input type="radio" name="Delete" value="female"> Delete<br>
+</p>
+          </form>
+      
+        <strong>Step 3</strong>
+        
+        <form action=<?php echo $actionLink ?> method="POST">
+   
+      <h2>What keyword do you want to edit?.</h2>
+      <label for="site">Site Url</label>
+      <input type="text" name="keyword_edit" class="form-control" id="site-url" placeholder="example.com">
+      <button type="submit" class="btn btn-default">Submit</button>
+</form>
+        
+      </div>
+
+    </div>
+
+  </form>
+</div>
+
+
+
+<div>
+<h1>Keywords</h1>
+  <div class="scrollbox">
+   
+        <?php
+       if(isset($_POST['url_keywords'])){
+    $urlkeywords = $_POST['url_keywords']; }
+
+             $wrds =
+            'SELECT  id
+            FROM
+            company_url
+            WHERE
+            company_url = :url';
+            $stmt = $db->prepare($wrds);
+            $stmt->bindParam(':url', $urlkeywords, PDO::PARAM_STR);
+            $stmt->execute();
+            while( $urlkeys = $stmt->fetchAll(PDO::FETCH_ASSOC)){
+            $id = $urlkeys[0]['id'];
+            };
+    
+        $wrds =
+        'SELECT  keyword
+        FROM
+        url_keywords
+        WHERE
+        url_keywords.url_id = :id';
+        $stmt = $db->prepare($wrds);
+        $stmt->bindParam(':id', $id, PDO::PARAM_STR);
+        $stmt->execute();
+        $keywords = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        // end of gather
+
+        //  loop over keywords and record data into database
+        foreach($keywords as $keyword)
+        {
+            foreach($keyword as $ind=>$word){
+                echo $word ."<br />";
+            };
+        }
+        
+            ?>
+  </div>
+  </div>
+</div>
 
 
    
