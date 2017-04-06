@@ -1,3 +1,18 @@
+<?php
+
+require_once 'vendor/autoload.php';
+
+use Carbon\Carbon;
+use GuzzleHttp\Client;
+use Ecreativeworks\Spyfu\lib\DB;
+use Ecreativeworks\Spyfu\lib\SpyfuApi;
+use Ecreativeworks\Spyfu\lib\Report;
+Use Ecreativeworks\Spyfu\models\Url;
+use Ecreativeworks\Spyfu\models\Keyword;
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -93,6 +108,7 @@
         <p>
           <?php 
         if(isset($_POST['url_keywords'])){
+          $changeUrl=$_POST['url_keywords'];
         echo "Your Current URL is" . " ".  $_POST['url_keywords'];} ?>
         </p>
       </div>
@@ -132,42 +148,11 @@
   <div class="scrollbox">
    
         <?php
-       if(isset($_POST['url_keywords'])){
-    $urlkeywords = $_POST['url_keywords']; }
-
-             $wrds =
-            'SELECT  id
-            FROM
-            company_url
-            WHERE
-            company_url = :url';
-            $stmt = $db->prepare($wrds);
-            $stmt->bindParam(':url', $urlkeywords, PDO::PARAM_STR);
-            $stmt->execute();
-            while( $urlkeys = $stmt->fetchAll(PDO::FETCH_ASSOC)){
-            $id = $urlkeys[0]['id'];
-            };
+        // prints keywords for the entered URL
+      if(isset($_POST['url_keywords'])){
     
-        $wrds =
-        'SELECT  keyword
-        FROM
-        url_keywords
-        WHERE
-        url_keywords.url_id = :id';
-        $stmt = $db->prepare($wrds);
-        $stmt->bindParam(':id', $id, PDO::PARAM_STR);
-        $stmt->execute();
-        $keywords = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        // end of gather
-
-        //  loop over keywords and record data into database
-        foreach($keywords as $keyword)
-        {
-            foreach($keyword as $ind=>$word){
-                echo $word ."<br />";
-            };
-        }
-        
+     Keyword::printKeywords($db, $_POST['url_keywords']);
+      }
             ?>
   </div>
   </div>

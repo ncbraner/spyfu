@@ -10,7 +10,44 @@ use PDO;
 
 class Keyword {
     
+    public static function printKeywords($db, $urlkeywords){
+
+  $wrds =
+            'SELECT  id
+            FROM
+            company_url
+            WHERE
+            company_url = :url';
+            $stmt = $db->prepare($wrds);
+            $stmt->bindParam(':url', $urlkeywords, PDO::PARAM_STR);
+            $stmt->execute();
+            while( $urlkeys = $stmt->fetchAll(PDO::FETCH_ASSOC)){
+            $id = $urlkeys[0]['id'];
+            };
     
+        $wrds =
+        'SELECT  keyword
+        FROM
+        url_keywords
+        WHERE
+        url_keywords.url_id = :id';
+        $stmt = $db->prepare($wrds);
+        $stmt->bindParam(':id', $id, PDO::PARAM_STR);
+        $stmt->execute();
+        $keywords = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        // end of gather
+
+        //  loop over keywords and record data into database
+        foreach($keywords as $keyword)
+        {
+            foreach($keyword as $ind=>$word){
+                echo $word ."<br />";
+            };
+        }
+        
+            
+
+    }
     
     public static function seoInsert($db, $url){
         $client = new Client();
@@ -27,11 +64,10 @@ class Keyword {
             $stmt->execute();
             while( $urlkeys = $stmt->fetchAll(PDO::FETCH_ASSOC)){
             $id = $urlkeys[0]['id'];
-            }
+            };
            
 
-            print_R($url);
-            print_r($id);
+            
     
         
         //Gather keywords per url
