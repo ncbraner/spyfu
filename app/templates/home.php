@@ -1,7 +1,4 @@
 <?php
-
-require_once 'vendor/autoload.php';
-
 use Carbon\Carbon;
 use GuzzleHttp\Client;
 use Ecreativeworks\Spyfu\lib\DB;
@@ -13,211 +10,79 @@ use Ecreativeworks\Spyfu\models\Keyword;
 
 
 
-<!DOCTYPE html>
-<html lang="en">
+  <!DOCTYPE html>
+  <html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
-  <title>Ecreativeworks</title>
-  <link rel="stylesheet" type="text/css" href="<?php echo getenv(" APPURL ") ?>app/templates/style.css" />
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script type="text/javascript" src="/spyfu/app/templates/javascript.js"></script>
-
-
-</head>
-
-<body>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+    <title>Ecreativeworks</title>
+    <link rel="stylesheet" type="text/css" href="/spyfu/app/templates/style.css" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript" src="/spyfu/app/templates/javascript.js"></script>
 
 
+  </head>
 
-
-
-
-  <!--hidden popup-->
-
-  <?php if(isset($_GET["error"])){
-    echo "URL {$_GET['url']} Already in Database";
-}
-?>
-
-    <!--ADD URL FORM-->
-    <div id="popupAdd" class="popupAdd">
-      <h1>Enter the url you want to add</h1>
-
-      <form action="" method="post">
-        Company URL:
-        <input type="text" name="addUrl">
-        <br>
-
-        <input type="submit" value="Submit">
-      </form>
-    </div>
-
-
-
-    <!--Run Report-->
-    <div id="popupReport" class="popupReport hidden">
-      <h1>Do you want to run report</h1>
-
-      <form action="" method="post">
-
-        <input type="submit" name="reportYes" value="yes">
-        <br>
-        <input type="submit" name="reportNo" value="no">
-
-      </form>
-    </div>
-
-
-
-    <!--Delete URL -->
-
-    <div id="popupDelete" class="popupDelete">
-      <h1>Enter the url you want to Delete</h1>
-      <form action="" method="post">
-        Company URL:
-        <input type="text" name="deleteUrl">
-        <br>
-        <input type="submit" value="Submit">
-      </form>
-    </div>
-   
-   
-<div class="toolbar flex flextop  ">
-     <?php
-            $actionLink = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-      ?>
-     
-
- <div class="">
-   <strong>Step 1</strong>
-  <form action=<?php echo $actionLink ?> method="POST">
-    <div class="form-group">
-      <h2>What is the URL you want to see Keywords for.</h2>
-      <label for="site">Site Url</label>
-      <input type="text" name="url_keywords" class="form-control" id="site-url" placeholder="example.com">
-      <button type="submit" class="btn btn-default">Submit</button>
-</form>
-      <div>
-        <p>
-          <?php 
-        if(isset($_POST['url_keywords'])){
-          $changeUrl=$_POST['url_keywords'];
-        echo "Your Current URL is" . " ".  $_POST['url_keywords'];} ?>
-        </p>
-      </div>
-
-      <div>
-        <form action="">
-          <p>
-        <strong>Step 2</strong> <br />
-        Do you want to add or delete a Keyword 
-          
-            <input type="radio" name="Add" value="male"> Add
-            <input type="radio" name="Delete" value="female"> Delete<br>
-</p>
-          </form>
-      
-        <strong>Step 3</strong>
-        
-        <form action=<?php echo $actionLink ?> method="POST">
-   
-      <h2>What keyword do you want to edit?.</h2>
-      <label for="site">Site Url</label>
-      <input type="text" name="keyword_edit" class="form-control" id="site-url" placeholder="example.com">
-      <button type="submit" class="btn btn-default">Submit</button>
-</form>
-        
-      </div>
-
-    </div>
-
-  </form>
-</div>
-
-
-
-<div>
-<h1>Keywords</h1>
-  <div class="scrollbox">
-   
-        <?php
-        // prints keywords for the entered URL
-      if(isset($_POST['url_keywords'])){
+  <body>
+<div class="flex flex-right header">
+   <?php  include('app/templates/header.php'); ?>
     
-     Keyword::printKeywords($db, $_POST['url_keywords']);
-      }
-            ?>
-  </div>
-  </div>
 </div>
+    <div class="flex flex-center">
+      <h1 class="flex-center">Welcome to The Ecreativeworks Spyfu Automatic keyword Report Generator</h1>
+    </div>
 
+    <div class="flex">
 
-   
-   
-    <div class="container flex flex-center">
-      <?php
-$actionLink = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-?>
-     
-     
-     
-     <!--end hidden content -->
-     
-
+      <div class="leftside">
+        <?php  include('app/templates/leftnav.php'); 
+    
+        ?>
+        
+      </div>
+      <div class="main">
+<h2>What does it do?</h2>
+ <p class="content">The Spyfu automated website (spyfu.ecreativworks.com) is a intermediary between Spyfu.com and Google sheets/data studio. <br>
+ The website take data that you have given it and then submits that to spyfu.  The current data is only a url and keyword association. <br>
+ A good example would be  URL: Ebay.com   Keyword: Online auctions. At the current time the only data being stored is the URL, Keyword, Rank, and date.
+  There are many other options however it was indicated that this is all we need at the current time.  </p>
+<h2>Then what happens?</h2>
+ <p class="content"></p> After the the website runs its reports  those reports are then sent to google sheets ( associated with the seo account) and this process is semi automatic. 
+  Every month someone ( one person would be best) will need to import data.  We are working on automating that process. <br>
+ This step, although adding some complexity to the process was needed to do the calculations to make the reports flexible. <br></p>
  
+ <p>The file inside google sheets is called "SEO keyword rankings".  Inside of google sheets there is will be a sheet with all of the information that our site brought in. Once it is 
+   inside of that sheet we calculate out all of the diffrent rank changes as needed. <strong>No one needs to be in the sheets!</strong>  I only say that due to the fact that if you mess 
+   up a formula or the data,  the sheets could break and your report will not be correct.    </p>
 
-            <form action=<?php echo $actionLink ?> method="POST">
+<h2>Then where does it go?</h2>
+<p>
+After the data has been cacluated in google sheets it rolls off to Data studio.  This is all automated.  From here this is where you will bring in your reports.  From your reports you can 
+roll down to keyword rankings page,  click on resources and attach your applicable google sheet.  This can be demonstrated.  
+</p>
 
-          <div class="form-group">
-            <h2>Run a URL one time only.</h2>
-            <label for="site">Site Url</label>
-            <input type="text" name="url" class="form-control" id="site-url" placeholder="example.com">
-            <button type="submit" class="btn btn-default">Submit</button>
+<h2>Whats this going to do for me?</h2>
 
-          </div>
+<p>
+  Up till this point you had to run between your keyworks rankings and your report and collect the data and calculate it as you went.  With this new app all that work is automated.  
+  Early estimates is this will save you approimalty a week of work!  Thats pretty cool.  This time saving will only become larger as you gain more clients.
+</p>
 
-        </form>
-
-
-   
-
-    </div>
-
-    <div id="hide" class="addDelete flex flex-center">
-
-      <div class="addUrl">
-        <button class="addurlbtn" id="add" onclick="appearAdd()">
-          <div class="btnInner">
-            <h1>Click here to add a client URL</h1>
-          </div>
-        </button>
       </div>
-
-      <div class="monthlyReport ">
-        <button class="monthlyReportBtn" id="report" onclick="appearReport()">
-          <div class="btnInner">
-            <h1>Monthly Report</h1>
-          </div>
-        </button>
-      </div>
-
-
-      <div class="deleteurl" id="delete" onclick="appearDelete()">
-        <button class="deleteurlbtn ">
-          <div class="btnInner">
-            <h1>Click here to delete a client URL</h1>
-          </div>
-
-        </button>
+      <div class="rightside">
+        <h1></h1>
       </div>
     </div>
-</body>
 
-</html>
+
+
+
+  </body>
+
+  </html>

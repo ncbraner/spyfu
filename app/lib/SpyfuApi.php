@@ -16,7 +16,7 @@ class SpyfuApi
 
     protected function buildUrl($endPoint, $clientUrl, $term)
     {
-        return "http://www.spyfu.com/apis/url_api/{$endPoint}?q={$clientUrl}&r=1&t={$term}&api_key={$this->apiSecret}";
+        return "http://www.spyfu.com/apis/url_api/{$endPoint}?q={$clientUrl}&r=5&t={$term}&api_key={$this->apiSecret}";
     }
 
     public function get($endPoint, $clientUrl,$term)
